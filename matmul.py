@@ -53,7 +53,7 @@ def matmul_kernel(
         )
 
         c_output += tl.dot(a, b, allow_tf32=False)
-        # dot product, 정합성 검증 
+        # dot product, 정합성 검증을 위해 allow_tf32 사용.
 
         a_ptrs += BLOCK_SIZE_K * stride_ak
         b_ptrs += BLOCK_SIZE_K * stride_bk

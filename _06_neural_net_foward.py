@@ -82,8 +82,6 @@ def fused_matmul_bias_relu_run(A, B, bias,
         B.stride(0), B.stride(1),
         C.stride(0), C.stride(1),
         M_BLOCK_SIZE=BM, N_BLOCK_SIZE=BN, K_BLOCK_SIZE=BK,
-        # 커널에 ALLOW_TF32 추가했다면 아래도 넘기세요:
-        # ALLOW_TF32=allow_tf32,
         num_warps=num_warps, num_stages=num_stages,
     )
     return C

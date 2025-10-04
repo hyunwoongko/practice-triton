@@ -87,7 +87,6 @@ if __name__ == "__main__":
     torch.backends.cudnn.allow_tf32 = False
     device = "cuda"
 
-    # 정확성 테스트
     shapes = [
         (2, 37, 61, 113),
         (4, 128, 128, 128),
@@ -97,7 +96,7 @@ if __name__ == "__main__":
         A = torch.randn(BATCH, M, K, device=device, dtype=torch.float32)
         B = torch.randn(BATCH, K, N, device=device, dtype=torch.float32)
 
-        ref = torch.bmm(A, B)  # torch.bmm도 동일
+        ref = torch.bmm(A, B)
         out = bmm_triton(A, B, BM=128, BN=128, BK=64)
 
         ok = torch.allclose(ref, out, rtol=1e-5, atol=1e-5)

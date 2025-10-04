@@ -103,7 +103,7 @@ def softmax_rowwise(X, BM=128):
 # quick check
 torch.manual_seed(0)
 X = torch.randn(512, 512, device="cuda", dtype=torch.float32)
-ref = torch.softmax(X, dim=1)  # PyTorch 기준
+ref = torch.softmax(X, dim=1)
 tri = softmax_rowwise(X)
 print("allclose:", torch.allclose(ref, tri, rtol=1e-5, atol=1e-5))
 print("row sums:", (tri.sum(dim=1).min().item(), tri.sum(dim=1).max().item()))
